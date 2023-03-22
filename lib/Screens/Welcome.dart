@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:verstand/Screens/Signin.dart';
+import 'package:verstand/Screens/Signup.dart';
 
 import '../CustomWidgets/CustomButton.dart';
 
@@ -77,9 +79,15 @@ class Welcome extends StatelessWidget {
             children: [
               CustomButton(
                 text: "Sign In",
-                function: () {},
+                function: () {
+                  Navigator.pushNamed(context, SigninScreen.id);
+                },
               ),
-              CustomButton(text: "Sign Up", function: () {})
+              CustomButton(
+                  text: "Sign Up",
+                  function: () {
+                    Navigator.pushNamed(context, SignupScreen.id);
+                  })
             ],
           )
         ],

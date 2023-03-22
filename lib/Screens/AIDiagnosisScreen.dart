@@ -22,40 +22,54 @@ class _AIDiagnosisScreenState extends State<AIDiagnosisScreen> {
       appBar: AppBar(
           title: Text("AI based diagnosis"),
           backgroundColor: Colors.blueAccent),
-      body: Container(
-        padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-        alignment: Alignment.topCenter,
-        child: Column(
-          children: [
-            CustomButton(
-              text: "Choose from gallery",
+      body: SafeArea(child: AIDiagnosis()),
+    );
+  }
+}
+
+class AIDiagnosis extends StatefulWidget {
+  const AIDiagnosis({Key? key}) : super(key: key);
+
+  @override
+  State<AIDiagnosis> createState() => _AIDiagnosisState();
+}
+
+class _AIDiagnosisState extends State<AIDiagnosis> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+      alignment: Alignment.topCenter,
+      child: Column(
+        children: [
+          CustomButton(
+            text: "Choose from gallery",
+            function: () async {
+              await sendImageFromGallery();
+              setState(() {});
+            },
+          ),
+          SizedBox(height: 10),
+          CustomButton(
+              text: "Choose from camera",
               function: () async {
-                await sendImageFromGallery();
+                await sendImageFromCamera();
                 setState(() {});
-              },
-            ),
-            SizedBox(height: 10),
-            CustomButton(
-                text: "Choose from camera",
-                function: () async {
-                  await sendImageFromCamera();
-                  setState(() {});
-                }),
-            SizedBox(height: 10),
-            image == null ? Container() : Image.file(File(image!.path)),
-            SizedBox(height: 10),
-            diagnosis == null
-                ? Container()
-                : Text(
-                    diagnosis!,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
-                    ),
+              }),
+          SizedBox(height: 10),
+          image == null ? Container() : Image.file(File(image!.path)),
+          SizedBox(height: 10),
+          diagnosis == null
+              ? Container()
+              : Text(
+                  diagnosis!,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
                   ),
-          ],
-        ),
+                ),
+        ],
       ),
     );
   }

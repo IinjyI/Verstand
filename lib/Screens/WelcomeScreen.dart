@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:verstand/Screens/SigninScreen.dart';
 import 'package:verstand/Screens/SignupScreen.dart';
 import '../CustomWidgets/CustomButton.dart';
@@ -75,17 +76,14 @@ class Welcome extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CustomButton(
-                text: "Sign In",
-                function: () =>
-                    Navigator.of(context).pushNamed(SigninScreen.id),
-              ),
+                  text: "Sign In",
+                  function: () {
+                    Navigator.of(context).pushNamed(SigninScreen.id);
+                  }),
               CustomButton(
                   text: "Sign Up",
                   function: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SignupScreen()));
+                    Navigator.of(context).pushNamed(SignupScreen.id);
                   })
             ],
           )

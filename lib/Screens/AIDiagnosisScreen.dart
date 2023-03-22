@@ -9,6 +9,8 @@ class AIDiagnosisScreen extends StatefulWidget {
   AIDiagnosisScreen({Key? key}) : super(key: key);
   static const String id = 'AIDiagnosisScreen';
 
+  ///use deep learning model to predict if user is unhealthy
+
   @override
   State<AIDiagnosisScreen> createState() => _AIDiagnosisScreenState();
 }

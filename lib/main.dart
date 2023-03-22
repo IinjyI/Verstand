@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'Screens/Welcome.dart';
-import 'Screens/Signin.dart';
-import 'Screens/Signup.dart';
-import 'Screens/Profile.dart';
-import 'Screens/Home.dart';
-import 'Screens/AIDiagnosis.dart';
+import 'Screens/WelcomeScreen.dart';
+import 'Screens/SigninScreen.dart';
+import 'Screens/SignupScreen.dart';
+import 'Screens/ProfileScreen.dart';
+import 'Screens/HomeScreen.dart';
+import 'Screens/AIDiagnosisScreen.dart';
 
 Future<void> main() async {
   runApp(MyApp());
@@ -49,6 +49,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -61,7 +63,7 @@ class MyApp extends StatelessWidget {
         AIDiagnosisScreen.id: (context) => AIDiagnosisScreen(),
         ProfileScreen.id: (context) => ProfileScreen()
       },
-      initialRoute: AIDiagnosisScreen.id,
+      initialRoute: WelcomeScreen.id,
     );
   }
 }

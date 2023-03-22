@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:verstand/Screens/Signin.dart';
-import 'package:verstand/Screens/Signup.dart';
-
+import 'package:verstand/Screens/SigninScreen.dart';
+import 'package:verstand/Screens/SignupScreen.dart';
 import '../CustomWidgets/CustomButton.dart';
 
 ///First screen if user didn't sign in/up
@@ -11,11 +10,9 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: Welcome(),
-        ),
+    return const Scaffold(
+      body: SafeArea(
+        child: Welcome(),
       ),
     );
   }
@@ -79,14 +76,16 @@ class Welcome extends StatelessWidget {
             children: [
               CustomButton(
                 text: "Sign In",
-                function: () {
-                  Navigator.pushNamed(context, SigninScreen.id);
-                },
+                function: () =>
+                    Navigator.of(context).pushNamed(SigninScreen.id),
               ),
               CustomButton(
                   text: "Sign Up",
                   function: () {
-                    Navigator.pushNamed(context, SignupScreen.id);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignupScreen()));
                   })
             ],
           )

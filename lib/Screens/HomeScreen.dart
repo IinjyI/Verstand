@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../CustomWidgets/CustomButton.dart';
+import '../Functions/getQuote.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
   static const String id = 'HomeScreen';
@@ -19,6 +22,16 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        padding: const EdgeInsets.all(10),
+        child: Column(children: [
+          CustomButton(
+              text: "get quote",
+              function: () {
+                getQuote();
+              })
+        ]));
   }
 }

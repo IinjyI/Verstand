@@ -34,7 +34,13 @@ dependencies:
   http: ^0.13.5
   http_parser: ^4.0.2
   image_picker: ^0.8.7
-
+  shared_preferences: ^2.0.20
+  provider: ^6.0.5
+  loading_overlay: ^0.3.0
+  form_field_validator: ^1.1.0
+  firebase_auth: ^4.3.0
+  firebase_core: ^2.8.0
+  cloud_firestore: ^4.4.5
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2

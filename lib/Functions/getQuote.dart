@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<String> getQuote() async {
+String? quote, author;
+Future<void> getQuote() async {
   final request = http.Request(
       "GET", Uri.parse("https://quotes15.p.rapidapi.com/quotes/random/"));
   Map<String, String> headers = {
@@ -11,8 +12,9 @@ Future<String> getQuote() async {
   };
   request.headers.addAll(headers);
   final response = await http.Response.fromStream(await request.send());
-  print(json.decode(response.body)["content"] +
-      " by: " +
-      json.decode(response.body)["originator"]["name"]);
-  return json.decode(response.body)["content"];
+  quote = await json.decode(response.body)["content"];
+  author = "- ${await json.decode(response.body)["originator"]["name"]}";
 }
+
+///- I don't have any problem if you copy and paste the code but please don't do so if you do not understand how these tasks are implemented.
+// - If you have any problem understanding the code, don't hesitate to contact me and I will do my best to explain them.

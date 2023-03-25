@@ -13,6 +13,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Welcome(),
       ),
@@ -48,10 +49,9 @@ class Welcome extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 50),
           Padding(
             padding: const EdgeInsets.all(20),
-            child: Image.asset('assets/doctors.png'),
+            child: Image.asset('assets/logo.png'),
           ),
           const SizedBox(
             height: 50,

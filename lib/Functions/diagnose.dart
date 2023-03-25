@@ -10,7 +10,7 @@ Future<String> diagnose(image) async {
   );
   request.files.add(
     await http.MultipartFile.fromPath(
-      'image', // NOTE - this value must match the 'file=' at the start of -F
+      'image',
       image!.path,
       contentType: MediaType('image', 'jpeg'),
     ),

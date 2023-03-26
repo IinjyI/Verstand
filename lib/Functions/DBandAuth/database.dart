@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+int count = 0;
 
 /// store data
 void upLoadProfile(Map<String, dynamic> userInfo, String username) {

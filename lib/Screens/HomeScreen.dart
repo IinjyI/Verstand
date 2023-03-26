@@ -31,10 +31,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      padding: const EdgeInsets.all(10),
+    return SingleChildScrollView(
       child: Column(children: [
         CustomButton(
             text: "get quote",
@@ -68,6 +65,7 @@ class _HomeState extends State<Home> {
           future: getHistory(loggedInUser),
           builder: (context, snapshot) => snapshot.hasData
               ? ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: snapshot.data!.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -78,7 +76,7 @@ class _HomeState extends State<Home> {
                     );
                   })
               : Center(
-                  child: Container(),
+                  child: CircularProgressIndicator(),
                 ),
         )
       ]),

@@ -37,8 +37,7 @@ class AIDiagnosis extends StatefulWidget {
 }
 
 class _AIDiagnosisState extends State<AIDiagnosis> {
-  int count = 0;
-
+  bool processing = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,8 +53,10 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
                 'diagnosis': diagnosis,
                 'timestamp': Timestamp.fromDate(DateTime.now()),
               };
-              await storeHistory(loggedInUser!, diagnosisInfo, '${++count}');
+
+              await storeHistory(loggedInUser!, diagnosisInfo, '${count++}');
               setState(() {});
+              processing = false;
             },
           ),
           SizedBox(height: 10),
@@ -68,10 +69,10 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
           SizedBox(height: 10),
           image == null ? Container() : Image.file(File(image!.path)),
           SizedBox(height: 10),
-          diagnosis == null
-              ? Container()
+          processing
+              ? CircularProgressIndicator()
               : Text(
-                  diagnosis!,
+                  diagnosis,
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.black,

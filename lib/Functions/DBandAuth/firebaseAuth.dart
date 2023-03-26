@@ -53,6 +53,7 @@ Future<void> signOut() async {
   try {
     await _firebaseAuth.signOut();
     deletePrefs();
+    getLoggedInUser();
   } catch (e) {
     print(e);
   }

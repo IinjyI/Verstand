@@ -41,7 +41,7 @@ class Welcome extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () {
-                Navigator.of(context).pushReplacementNamed(NavBottomBar.id);
+                Navigator.pushReplacementNamed(context, NavBottomBar.id);
               },
               child: const Text(
                 "Skip",

@@ -48,24 +48,44 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
           CustomButton(
             text: "Choose from gallery",
             function: () async {
+              setState(() {
+                processing = true;
+              });
               await sendImageFromGallery();
-              Map<String, dynamic> diagnosisInfo = {
-                'diagnosis': diagnosis,
-                'timestamp': Timestamp.fromDate(DateTime.now()),
-              };
+              if (loggedInUser != "NotLoggedIn") {
+                Map<String, dynamic> diagnosisInfo = {
+                  'diagnosis': diagnosis,
+                  'timestamp': Timestamp.fromDate(DateTime.now()),
+                };
 
-              await storeHistory(loggedInUser!, diagnosisInfo, '${count++}');
-              setState(() {});
-              processing = false;
+                await storeHistory(loggedInUser!, diagnosisInfo, '${count++}');
+              }
+              setState(() {
+                processing = false;
+              });
             },
           ),
           SizedBox(height: 10),
           CustomButton(
-              text: "Choose from camera",
-              function: () async {
-                await sendImageFromCamera();
-                setState(() {});
-              }),
+            text: "Choose from camera",
+            function: () async {
+              setState(() {
+                processing = true;
+              });
+              await sendImageFromCamera();
+              if (loggedInUser != "NotLoggedIn") {
+                Map<String, dynamic> diagnosisInfo = {
+                  'diagnosis': diagnosis,
+                  'timestamp': Timestamp.fromDate(DateTime.now()),
+                };
+
+                await storeHistory(loggedInUser!, diagnosisInfo, '${count++}');
+              }
+              setState(() {
+                processing = false;
+              });
+            },
+          ),
           SizedBox(height: 10),
           image == null ? Container() : Image.file(File(image!.path)),
           SizedBox(height: 10),

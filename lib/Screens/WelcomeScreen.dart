@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:verstand/Screens/HomeScreen.dart';
+import 'package:verstand/Screens/NavBottomBar.dart';
 
 import 'package:verstand/Screens/SigninScreen.dart';
 import 'package:verstand/Screens/SignupScreen.dart';
@@ -41,7 +41,7 @@ class Welcome extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(HomeScreen.id);
+                Navigator.of(context).pushReplacementNamed(NavBottomBar.id);
               },
               child: const Text(
                 "Skip",

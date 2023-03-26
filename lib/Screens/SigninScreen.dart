@@ -3,6 +3,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
 import 'package:verstand/Functions/DBandAuth/database.dart';
 import 'package:verstand/Screens/HomeScreen.dart';
+import 'package:verstand/Screens/NavBottomBar.dart';
 import '../CustomWidgets/CustomButton.dart';
 import '../CustomWidgets/CustomTextField.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
@@ -101,7 +102,7 @@ class Signin extends StatelessWidget {
                                         await getUsername(_email.text));
                                     getLoggedInUser();
                                     Navigator.pushReplacementNamed(
-                                        context, HomeScreen.id);
+                                        context, NavBottomBar.id);
                                   }
                                 });
                               }

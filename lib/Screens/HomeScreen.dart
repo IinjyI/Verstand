@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:verstand/Functions/DBandAuth/database.dart';
-import 'package:verstand/Screens/AIDiagnosisScreen.dart';
-import 'package:verstand/Screens/ProfileScreen.dart';
 
 import '../CustomWidgets/CustomButton.dart';
 import '../CustomWidgets/CustomHistoryItem.dart';
-import '../Functions/DBandAuth/firebaseAuth.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
 import '../Functions/SYSandAPI/getQuote.dart';
-import 'WelcomeScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -65,29 +61,6 @@ class _HomeState extends State<Home> {
                   color: Colors.black,
                 ),
               ),
-        CustomButton(
-          text: "logout",
-          function: () async {
-            signOut();
-            Navigator.pushReplacementNamed(context, WelcomeScreen.id);
-            setState(() {});
-          },
-        ),
-        CustomButton(
-          text: "profile",
-          function: () {
-            Navigator.pushNamed(context, ProfileScreen.id);
-            setState(() {});
-          },
-        ),
-        CustomButton(
-          text: "gotodiagnosis",
-          function: () async {
-            signOut();
-            Navigator.pushNamed(context, AIDiagnosisScreen.id);
-            setState(() {});
-          },
-        ),
         Text(
           loggedInUser!,
         ),

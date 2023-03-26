@@ -32,31 +32,54 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(top: 20.0),
-        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-            future: getUserInformation(loggedInUser),
-            builder: (c, snapshot) => snapshot.hasData
-                ? Column(
-                    children: [
-                      CustomizedInfoItem(
-                        icon: Icons.person,
-                        label: snapshot.data!.data()!['username'],
+        child: loggedInUser != "NotLoggedIn"
+            ? Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                  future: getUserInformation(loggedInUser),
+                  builder: (c, snapshot) => snapshot.hasData
+                      ? Column(
+                          children: [
+                            CustomizedInfoItem(
+                              icon: Icons.person,
+                              label: snapshot.data!.data()!['username'],
+                            ),
+                            CustomizedInfoItem(
+                              icon: Icons.email,
+                              label: snapshot.data!.data()!['email'],
+                            ),
+                            CustomButton(
+                                text: 'Sign Out',
+                                function: () {
+                                  signOut();
+                                  Navigator.pushReplacementNamed(
+                                      context, WelcomeScreen.id);
+                                })
+                          ],
+                        )
+                      : Center(child: CircularProgressIndicator()),
+                )
+              ])
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "You are not logged in",
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushReplacementNamed(WelcomeScreen.id);
+                      },
+                      child: const Text(
+                        "Go to sign in / up",
+                        style: TextStyle(color: Colors.blueGrey, fontSize: 20),
                       ),
-                      CustomizedInfoItem(
-                        icon: Icons.email,
-                        label: snapshot.data!.data()!['email'],
-                      ),
-                      CustomButton(
-                          text: 'Sign Out',
-                          function: () {
-                            signOut();
-                            Navigator.pushReplacementNamed(
-                                context, WelcomeScreen.id);
-                          })
-                    ],
-                  )
-                : Center(child: CircularProgressIndicator()),
-          )
-        ]));
+                    ),
+                  ],
+                ),
+              ));
   }
 }

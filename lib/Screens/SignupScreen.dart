@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
+import 'package:verstand/Screens/NavBottomBar.dart';
 
 import '../CustomWidgets/CustomButton.dart';
 import '../CustomWidgets/CustomSnackBar.dart';
@@ -131,7 +132,7 @@ class Signup extends StatelessWidget {
                                 getLoggedInUser();
 
                                 Navigator.pushReplacementNamed(
-                                    context, HomeScreen.id);
+                                    context, NavBottomBar.id);
                                 Provider.of<SignProvider>(context,
                                         listen: false)
                                     .signed();

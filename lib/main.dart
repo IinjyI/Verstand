@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'Functions/DBandAuth/sharedPrefs.dart';
+import 'Screens/NavBottomBar.dart';
 import 'Screens/WelcomeScreen.dart';
 import 'Screens/SigninScreen.dart';
 import 'Screens/SignupScreen.dart';
@@ -34,10 +35,11 @@ class MyApp extends StatelessWidget {
         SigninScreen.id: (context) => SigninScreen(),
         HomeScreen.id: (context) => HomeScreen(),
         AIDiagnosisScreen.id: (context) => AIDiagnosisScreen(),
-        ProfileScreen.id: (context) => ProfileScreen()
+        ProfileScreen.id: (context) => ProfileScreen(),
+        NavBottomBar.id: (context) => NavBottomBar()
       },
       initialRoute:
-          loggedInUser == "NotLoggedIn" ? WelcomeScreen.id : HomeScreen.id,
+          loggedInUser == "NotLoggedIn" ? WelcomeScreen.id : NavBottomBar.id,
     );
   }
 }

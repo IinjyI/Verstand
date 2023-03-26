@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:verstand/Functions/DBandAuth/database.dart';
 import 'package:verstand/Screens/ProfileScreen.dart';
 
 import '../CustomWidgets/CustomButton.dart';
+import '../CustomWidgets/CustomHistoryItem.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
 import '../Functions/SYSandAPI/getQuote.dart';
@@ -72,13 +75,30 @@ class _HomeState extends State<Home> {
         CustomButton(
           text: "profile",
           function: () {
-            Navigator.pushReplacementNamed(context, ProfileScreen.id);
+            Navigator.pushNamed(context, ProfileScreen.id);
             setState(() {});
           },
         ),
         Text(
           loggedInUser!,
         ),
+        FutureBuilder<List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
+          future: getHistory(loggedInUser),
+          builder: (context, snapshot) => snapshot.hasData
+              ? ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return CustomHistoryItem(
+                      index: index,
+                      pastDiagnosis: snapshot.data![index].data()['diagnosis'],
+                      time: snapshot.data![index].data()['timestamp'],
+                    );
+                  })
+              : Center(
+                  child: Container(),
+                ),
+        )
       ]),
     );
   }

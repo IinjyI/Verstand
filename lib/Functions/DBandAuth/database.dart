@@ -64,7 +64,7 @@ Future storeHistory(
 
 /// get history in firestore
 Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getHistory(
-    String username) {
+    String? username) {
   return _fireStore
       .collection('users')
       .doc(username)

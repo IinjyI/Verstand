@@ -8,8 +8,9 @@ import '../Functions/DBandAuth/database.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
 import 'WelcomeScreen.dart';
 
-/// User info and last diagnosis,
+/// User info,
 /// sign out
+///
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
   static const String id = 'ProfileScreen';
@@ -32,34 +33,29 @@ class Profile extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(top: 20.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Stack(
-            children: [
-              /// get user Information
-              FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                future: getUserInformation(loggedInUser),
-                builder: (c, snapshot) => snapshot.hasData
-                    ? Column(
-                        children: [
-                          CustomizedInfoItem(
-                            icon: Icons.person,
-                            label: snapshot.data!.data()!['username'],
-                          ),
-                          CustomizedInfoItem(
-                            icon: Icons.email,
-                            label: snapshot.data!.data()!['email'],
-                          ),
-                          CustomButton(
-                              text: 'Sign Out',
-                              function: () {
-                                signOut();
-                                Navigator.pushReplacementNamed(
-                                    context, WelcomeScreen.id);
-                              })
-                        ],
-                      )
-                    : Center(child: CircularProgressIndicator()),
-              ),
-            ],
+          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+            future: getUserInformation(loggedInUser),
+            builder: (c, snapshot) => snapshot.hasData
+                ? Column(
+                    children: [
+                      CustomizedInfoItem(
+                        icon: Icons.person,
+                        label: snapshot.data!.data()!['username'],
+                      ),
+                      CustomizedInfoItem(
+                        icon: Icons.email,
+                        label: snapshot.data!.data()!['email'],
+                      ),
+                      CustomButton(
+                          text: 'Sign Out',
+                          function: () {
+                            signOut();
+                            Navigator.pushReplacementNamed(
+                                context, WelcomeScreen.id);
+                          })
+                    ],
+                  )
+                : Center(child: CircularProgressIndicator()),
           )
         ]));
   }

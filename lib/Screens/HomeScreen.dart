@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:verstand/Functions/DBandAuth/database.dart';
+import 'package:verstand/Screens/ProfileScreen.dart';
 
 import '../CustomWidgets/CustomButton.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
@@ -67,6 +66,13 @@ class _HomeState extends State<Home> {
           function: () async {
             signOut();
             Navigator.pushReplacementNamed(context, WelcomeScreen.id);
+            setState(() {});
+          },
+        ),
+        CustomButton(
+          text: "profile",
+          function: () {
+            Navigator.pushReplacementNamed(context, ProfileScreen.id);
             setState(() {});
           },
         ),

@@ -9,11 +9,12 @@ void upLoadProfile(Map<String, dynamic> userInfo, String username) {
 }
 
 /// get user information  from firebase
-Future getUserInformation(String username) {
+Future<DocumentSnapshot<Map<String, dynamic>>> getUserInformation(
+    String? username) {
   return _fireStore.collection('users').doc(username).get();
 }
 
-///get user name for specific email
+///get username for specific email
 Future<String?> getUsername(email) async {
   return _fireStore
       .collection('users')
@@ -28,7 +29,7 @@ Future<String?> getUsername(email) async {
 Future searchUserName(String userName) {
   return _fireStore
       .collection('users')
-      .where('name', isEqualTo: userName)
+      .where('username', isEqualTo: userName)
       .get()
       .then((value) => value.docs.length);
 }

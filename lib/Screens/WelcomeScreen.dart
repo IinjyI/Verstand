@@ -79,12 +79,12 @@ class Welcome extends StatelessWidget {
               CustomButton(
                   text: "Sign In",
                   function: () {
-                    Navigator.of(context).pushNamed(SigninScreen.id);
+                    Navigator.of(context).pushReplacementNamed(SigninScreen.id);
                   }),
               CustomButton(
                   text: "Sign Up",
                   function: () {
-                    Navigator.of(context).pushNamed(SignupScreen.id);
+                    Navigator.of(context).pushReplacementNamed(SignupScreen.id);
                   })
             ],
           )

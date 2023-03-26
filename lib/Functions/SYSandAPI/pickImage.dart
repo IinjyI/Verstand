@@ -1,4 +1,4 @@
-import '../Functions/diagnose.dart';
+import 'diagnose.dart';
 import 'package:image_picker/image_picker.dart';
 
 ImagePicker picker = ImagePicker();

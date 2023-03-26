@@ -47,7 +47,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             child: Icon(
               widget.icon,
               size: 30,
-              color: const Color(0xffF54749),
+              color: const Color(0xff2952ce),
             ),
           ),
           border: OutlineInputBorder(),

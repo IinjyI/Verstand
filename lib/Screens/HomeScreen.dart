@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../CustomWidgets/CustomButton.dart';
-import '../Functions/getQuote.dart';
+import '../Functions/DBandAuth/firebaseAuth.dart';
+import '../Functions/DBandAuth/sharedPrefs.dart';
+import '../Functions/SYSandAPI/getQuote.dart';
+import 'WelcomeScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -56,7 +59,15 @@ class _HomeState extends State<Home> {
                   fontSize: 20,
                   color: Colors.black,
                 ),
-              )
+              ),
+        CustomButton(
+          text: "logout",
+          function: () async {
+            signOut();
+            Navigator.pushReplacementNamed(context, WelcomeScreen.id);
+            setState(() {});
+          },
+        )
       ]),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:verstand/CustomWidgets/CustomButton.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../Functions/pickImage.dart';
+import '../Functions/SYSandAPI/pickImage.dart';
 
 class AIDiagnosisScreen extends StatefulWidget {
   AIDiagnosisScreen({Key? key}) : super(key: key);

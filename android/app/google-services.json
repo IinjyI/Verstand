@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1009189603519",
+    "firebase_url": "https://verstand-2023-default-rtdb.firebaseio.com",
+    "project_id": "verstand-2023",
+    "storage_bucket": "verstand-2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009189603519:android:4db212c2dd20cba4349e0a",
+        "android_client_info": {
+          "package_name": "com.verstand.verstand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1009189603519-i64kheqfc5afqvvsc83kk9fd3llbm43g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ9Zv_zEP_-gFof4WtBvt6PeenVKHryGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1009189603519-i64kheqfc5afqvvsc83kk9fd3llbm43g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

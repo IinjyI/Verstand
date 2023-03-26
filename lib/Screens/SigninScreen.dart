@@ -3,15 +3,17 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:verstand/Screens/HomeScreen.dart';
-
 import '../CustomWidgets/CustomButton.dart';
 import '../CustomWidgets/CustomTextField.dart';
+import '../Functions/DBandAuth/database.dart';
+import '../Functions/DBandAuth/firebaseAuth.dart';
+import '../Functions/DBandAuth/sharedPrefs.dart';
 import '../Providers/SignProvider.dart';
 
 class SigninScreen extends StatelessWidget {
   static const String id = 'SigninScreen';
 
-  const SigninScreen({Key? key}) : super(key: key);
+  SigninScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +32,12 @@ class Signin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: LoadingOverlay(
-          isLoading: Provider.of<SignProvider>(context).isLoading,
-          child: SafeArea(
-              child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
+      body: LoadingOverlay(
+        isLoading: Provider.of<SignProvider>(context).isLoading,
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -88,25 +89,13 @@ class Signin extends StatelessWidget {
                           if (_formKey.currentState!.validate()) {
                             Provider.of<SignProvider>(context, listen: false)
                                 .loading();
-                            await authFirebaseMethods
-                                .signInWithEmailAndPassword(
-                                    context, _email.text, _password.text)
-                                .then((value) {
+                            await signIn(context, _email.text, _password.text)
+                                .then((value) async {
                               if (value != null) {
-                                /// save state of screen
-                                SharedPreferencesDatabase.saveUserLoggedInKey(
-                                    true);
-                                fireStoreDatabaseMethods
-                                    .searchEmail(_email.text)
-                                    .then((value) async {
-                                  await SharedPreferencesDatabase
-                                      .saveUserNameKey(
-                                          value[0].data()['username']);
-                                  await SharedPreferencesDatabase
-                                      .saveAddressKey(
-                                          value[0].data()['address']);
+                                searchEmail(_email.text).then((value) async {
                                   Navigator.pushReplacementNamed(
                                       context, HomeScreen.id);
+                                  setLoggedInEmail(_email.text);
                                 });
                               }
                             });
@@ -118,7 +107,7 @@ class Signin extends StatelessWidget {
                 ],
               ),
             ),
-          )),
+          ),
         ),
       ),
     );

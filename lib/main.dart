@@ -15,7 +15,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   /// check if user already logged in (will use it in routing)
-  await getLoggedInEmail();
+  await getLoggedInUser();
 
   ///run
   runApp(MyApp());
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         ProfileScreen.id: (context) => ProfileScreen()
       },
       initialRoute:
-          loggedInEmail == "NotLoggedIn" ? WelcomeScreen.id : HomeScreen.id,
+          loggedInUser == "NotLoggedIn" ? WelcomeScreen.id : HomeScreen.id,
     );
   }
 }

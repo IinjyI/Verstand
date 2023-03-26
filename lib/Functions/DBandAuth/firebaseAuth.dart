@@ -7,6 +7,7 @@ import 'database.dart';
 
 int resultOfUserName = 0;
 int resultOfEmail = 0;
+FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
 /// check username and email are valid or not.
 checkUsersName(userName) async {
@@ -17,8 +18,6 @@ checkEmail(email) async {
   await searchEmail(email).then(
       (List<QueryDocumentSnapshot> value) => resultOfEmail = value.length);
 }
-
-FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
 Future signUp(String email, String password) async {
   try {
@@ -50,7 +49,7 @@ Future signIn(context, email, password) async {
   }
 }
 
-signOut() async {
+Future<void> signOut() async {
   try {
     await _firebaseAuth.signOut();
     deletePrefs();

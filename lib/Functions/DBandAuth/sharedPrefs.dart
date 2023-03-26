@@ -1,16 +1,16 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-String? loggedInEmail = 'NotLoggedIn';
-setLoggedInEmail(String email) async {
+String? loggedInUser = 'NotLoggedIn';
+setLoggedInUser(String? username) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString('email', email);
+  prefs.setString('username', username!);
 }
 
-Future<void> getLoggedInEmail() async {
+Future<void> getLoggedInUser() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.getString('email') != null
-      ? loggedInEmail = (prefs.getString('email'))
-      : loggedInEmail = 'NotLoggedIn';
+  prefs.getString('username') != null
+      ? loggedInUser = (prefs.getString('username'))
+      : loggedInUser = 'NotLoggedIn';
 }
 
 Future<void> deletePrefs() async {

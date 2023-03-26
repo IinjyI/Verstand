@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:provider/provider.dart';
+import 'package:verstand/Functions/DBandAuth/database.dart';
 import 'package:verstand/Screens/HomeScreen.dart';
 import '../CustomWidgets/CustomButton.dart';
 import '../CustomWidgets/CustomTextField.dart';
-import '../Functions/DBandAuth/database.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
 import '../Providers/SignProvider.dart';
@@ -89,18 +89,16 @@ class Signin extends StatelessWidget {
                           if (_formKey.currentState!.validate()) {
                             Provider.of<SignProvider>(context, listen: false)
                                 .loading();
-                            await signIn(context, _email.text, _password.text)
+                            signIn(context, _email.text, _password.text)
                                 .then((value) async {
+                              Provider.of<SignProvider>(context, listen: false)
+                                  .signed();
                               if (value != null) {
-                                searchEmail(_email.text).then((value) async {
-                                  Navigator.pushReplacementNamed(
-                                      context, HomeScreen.id);
-                                  setLoggedInEmail(_email.text);
-                                });
+                                Navigator.pushReplacementNamed(
+                                    context, HomeScreen.id);
+                                setLoggedInUser(await getUsername(_email.text));
                               }
                             });
-                            Provider.of<SignProvider>(context, listen: false)
-                                .signed();
                           }
                         });
                   })

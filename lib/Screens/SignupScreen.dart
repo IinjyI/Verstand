@@ -120,19 +120,17 @@ class Signup extends StatelessWidget {
 
                             Map<String, dynamic> userInfo = {
                               'email': _email.text,
-                              'name': _userName.text,
+                              'username': _userName.text,
                             };
 
                             ///store data in FireStore
                             upLoadProfile(userInfo, _userName.text);
+                            setLoggedInUser(_userName.text);
 
                             Navigator.pushReplacementNamed(
                                 context, HomeScreen.id);
                             Provider.of<SignProvider>(context, listen: false)
                                 .signed();
-
-                            /// save state of screen
-                            setLoggedInEmail(_email.text);
                           }
                         });
                   })

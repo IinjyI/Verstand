@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:verstand/Functions/DBandAuth/database.dart';
 
 import '../CustomWidgets/CustomButton.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
@@ -7,12 +9,12 @@ import '../Functions/SYSandAPI/getQuote.dart';
 import 'WelcomeScreen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
   static const String id = 'HomeScreen';
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Home(),
       ),
@@ -21,7 +23,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -67,7 +69,10 @@ class _HomeState extends State<Home> {
             Navigator.pushReplacementNamed(context, WelcomeScreen.id);
             setState(() {});
           },
-        )
+        ),
+        Text(
+          loggedInUser!,
+        ),
       ]),
     );
   }

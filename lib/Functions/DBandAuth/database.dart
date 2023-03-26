@@ -13,6 +13,17 @@ Future getUserInformation(String username) {
   return _fireStore.collection('users').doc(username).get();
 }
 
+///get user name for specific email
+Future<String?> getUsername(email) async {
+  return _fireStore
+      .collection('users')
+      .where('email', isEqualTo: email)
+      .get()
+      .then((value) {
+    return value.docs[0].id;
+  });
+}
+
 /// search by username
 Future searchUserName(String userName) {
   return _fireStore
@@ -30,4 +41,47 @@ Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> searchEmail(
       .where('email', isEqualTo: email)
       .get()
       .then((value) => value.docs);
+}
+
+/// store history in firebase
+Future storeHistory(
+    String username, Map<String, dynamic> info, String title) async {
+  List<QueryDocumentSnapshot<Map<String, dynamic>>> history = await _fireStore
+      .collection('users')
+      .doc(username)
+      .collection('history')
+      .get()
+      .then((value) => value.docs);
+
+  _fireStore
+      .collection('users')
+      .doc(username)
+      .collection('history')
+      .doc(title)
+      .set(info);
+}
+
+/// get history in firestore
+Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getHistory(
+    String username) {
+  return _fireStore
+      .collection('users')
+      .doc(username)
+      .collection('history')
+      .get()
+      .then((value) => value.docs);
+}
+
+/// delete history
+void deleteHistory(String username) {
+  _fireStore
+      .collection('users')
+      .doc(username)
+      .collection('history')
+      .get()
+      .then((value) {
+    for (DocumentSnapshot doc in value.docs) {
+      doc.reference.delete();
+    }
+  });
 }

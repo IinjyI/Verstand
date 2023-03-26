@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore _fireStore = FirebaseFirestore.instance;
-int count = 0;
 
 /// store data
 void upLoadProfile(Map<String, dynamic> userInfo, String username) {
@@ -47,13 +46,6 @@ Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> searchEmail(
 /// store history in firebase
 Future storeHistory(
     String username, Map<String, dynamic> info, String title) async {
-  List<QueryDocumentSnapshot<Map<String, dynamic>>> history = await _fireStore
-      .collection('users')
-      .doc(username)
-      .collection('history')
-      .get()
-      .then((value) => value.docs);
-
   _fireStore
       .collection('users')
       .doc(username)
@@ -69,6 +61,7 @@ Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getHistory(
       .collection('users')
       .doc(username)
       .collection('history')
+      .orderBy("timestamp", descending: true)
       .get()
       .then((value) => value.docs);
 }

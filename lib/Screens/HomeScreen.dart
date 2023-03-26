@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:verstand/Functions/DBandAuth/database.dart';
+import 'package:verstand/Screens/AIDiagnosisScreen.dart';
 import 'package:verstand/Screens/ProfileScreen.dart';
 
 import '../CustomWidgets/CustomButton.dart';
@@ -76,6 +77,14 @@ class _HomeState extends State<Home> {
           text: "profile",
           function: () {
             Navigator.pushNamed(context, ProfileScreen.id);
+            setState(() {});
+          },
+        ),
+        CustomButton(
+          text: "gotodiagnosis",
+          function: () async {
+            signOut();
+            Navigator.pushNamed(context, AIDiagnosisScreen.id);
             setState(() {});
           },
         ),

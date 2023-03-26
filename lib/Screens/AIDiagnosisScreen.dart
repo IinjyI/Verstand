@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:verstand/CustomWidgets/CustomButton.dart';
-import 'package:image_picker/image_picker.dart';
 
+import '../Functions/DBandAuth/database.dart';
+import '../Functions/DBandAuth/sharedPrefs.dart';
 import '../Functions/SYSandAPI/pickImage.dart';
 
 class AIDiagnosisScreen extends StatefulWidget {
@@ -35,6 +37,8 @@ class AIDiagnosis extends StatefulWidget {
 }
 
 class _AIDiagnosisState extends State<AIDiagnosis> {
+  int count = 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,6 +50,11 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
             text: "Choose from gallery",
             function: () async {
               await sendImageFromGallery();
+              Map<String, dynamic> diagnosisInfo = {
+                'diagnosis': diagnosis,
+                'timestamp': Timestamp.fromDate(DateTime.now()),
+              };
+              await storeHistory(loggedInUser!, diagnosisInfo, '${++count}');
               setState(() {});
             },
           ),

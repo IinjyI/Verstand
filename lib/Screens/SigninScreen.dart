@@ -95,12 +95,13 @@ class Signin extends StatelessWidget {
                                   Provider.of<SignProvider>(context,
                                           listen: false)
                                       .signed();
+
                                   if (value != null) {
-                                    Navigator.pushReplacementNamed(
-                                        context, HomeScreen.id);
                                     setLoggedInUser(
                                         await getUsername(_email.text));
                                     getLoggedInUser();
+                                    Navigator.pushReplacementNamed(
+                                        context, HomeScreen.id);
                                   }
                                 });
                               }

@@ -10,20 +10,23 @@ class CustomButton extends StatelessWidget {
   final VoidCallback function;
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.blue,
-      borderRadius: BorderRadius.circular(10),
-      child: InkWell(
-        onTap: function,
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-          child: Center(
-            child: Text(
-              text,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Material(
+        color: Colors.blue,
+        borderRadius: BorderRadius.circular(10),
+        child: InkWell(
+          onTap: function,
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+            child: Center(
+              child: Text(
+                text,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ),

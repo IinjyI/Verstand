@@ -17,5 +17,6 @@ Future<String> diagnose(image) async {
   );
   final response = await http.Response.fromStream(await request.send());
   print(response.body);
+
   return json.decode(response.body)["diagnosis"];
 }

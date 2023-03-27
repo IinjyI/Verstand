@@ -50,6 +50,7 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
             function: () async {
               setState(() {
                 processing = true;
+                image = null;
               });
               await sendImageFromGallery();
               if (loggedInUser != "NotLoggedIn") {
@@ -71,6 +72,7 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
             function: () async {
               setState(() {
                 processing = true;
+                image = null;
               });
               await sendImageFromCamera();
               if (loggedInUser != "NotLoggedIn") {

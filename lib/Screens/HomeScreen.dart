@@ -2,10 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:verstand/Functions/DBandAuth/database.dart';
 
-import '../CustomWidgets/CustomButton.dart';
 import '../CustomWidgets/CustomHistoryItem.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
-import '../Functions/SYSandAPI/getQuote.dart';
 import 'WelcomeScreen.dart';
 
 class HomeScreen extends StatelessWidget {

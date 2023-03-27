@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
 import 'package:verstand/Functions/DBandAuth/database.dart';
-import 'package:verstand/Screens/HomeScreen.dart';
 import 'package:verstand/Screens/NavBottomBar.dart';
 import '../CustomWidgets/CustomButton.dart';
 import '../CustomWidgets/CustomTextField.dart';
@@ -94,18 +93,17 @@ class Signin extends StatelessWidget {
 
                                 signIn(context, _email.text, _password.text)
                                     .then((value) async {
-                                  Provider.of<SignProvider>(context,
-                                          listen: false)
-                                      .signed();
-
                                   if (value != null) {
-                                    setLoggedInUser(
+                                    await setLoggedInUser(
                                         await getUsername(_email.text));
                                     getLoggedInUser();
 
                                     Navigator.pushReplacementNamed(
                                         context, NavBottomBar.id);
                                   }
+                                  Provider.of<SignProvider>(context,
+                                          listen: false)
+                                      .signed();
                                 });
                               }
                             });

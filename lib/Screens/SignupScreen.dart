@@ -10,7 +10,6 @@ import '../Functions/DBandAuth/database.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
 import '../Providers/SignProvider.dart';
-import 'HomeScreen.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({Key? key}) : super(key: key);
@@ -63,7 +62,7 @@ class Signup extends StatelessWidget {
                               validator: MultiValidator(
                                   [RequiredValidator(errorText: "Required")]),
                               icon: Icons.person,
-                              labelText: 'Name',
+                              labelText: 'Username',
                             ),
                             CustomTextField(
                               controller: _email,
@@ -128,8 +127,8 @@ class Signup extends StatelessWidget {
 
                                 ///store data in FireStore
                                 upLoadProfile(userInfo, _userName.text);
-                                setLoggedInUser(_userName.text);
-                                getLoggedInUser();
+                                await setLoggedInUser(_userName.text);
+                                await getLoggedInUser();
 
                                 Navigator.pushReplacementNamed(
                                     context, NavBottomBar.id);

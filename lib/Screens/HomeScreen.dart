@@ -36,31 +36,6 @@ class _HomeState extends State<Home> {
       child: Padding(
         padding: const EdgeInsets.all(11),
         child: Column(children: [
-          CustomButton(
-              text: "get quote",
-              function: () async {
-                await getQuote();
-                setState(() {});
-              }),
-          quote == null
-              ? Container()
-              : Text(
-                  quote!,
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-          author == null
-              ? Container()
-              : Text(
-                  author!,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                  ),
-                ),
           Text(
             loggedInUser!,
           ),

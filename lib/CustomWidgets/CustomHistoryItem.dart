@@ -37,7 +37,10 @@ class CustomHistoryItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  " ${DateTime.fromMicrosecondsSinceEpoch(time.microsecondsSinceEpoch)}",
+                  DateTime.fromMicrosecondsSinceEpoch(
+                          time.microsecondsSinceEpoch)
+                      .toString()
+                      .substring(0, 19),
                   style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,

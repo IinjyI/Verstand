@@ -91,6 +91,7 @@ class Signin extends StatelessWidget {
                                 Provider.of<SignProvider>(context,
                                         listen: false)
                                     .loading();
+
                                 signIn(context, _email.text, _password.text)
                                     .then((value) async {
                                   Provider.of<SignProvider>(context,
@@ -101,6 +102,7 @@ class Signin extends StatelessWidget {
                                     setLoggedInUser(
                                         await getUsername(_email.text));
                                     getLoggedInUser();
+
                                     Navigator.pushReplacementNamed(
                                         context, NavBottomBar.id);
                                   }

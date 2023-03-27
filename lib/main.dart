@@ -15,9 +15,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  /// check if user already logged in (will use it in routing)
-  await getLoggedInUser();
-
   ///run
   runApp(MyApp());
 }

@@ -6,7 +6,7 @@ class CustomTextField extends StatefulWidget {
     required this.labelText,
     required this.validator,
     required this.controller,
-    this.prefix = Icons.account_circle_rounded,
+    this.prefix,
     this.obscure = false,
   });
 
@@ -15,7 +15,7 @@ class CustomTextField extends StatefulWidget {
   bool obscure;
   String? Function(String?) validator;
   final TextEditingController controller;
-  IconData prefix;
+  IconData? prefix;
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
 }

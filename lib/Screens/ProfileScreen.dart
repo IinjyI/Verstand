@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Profile(),
       ),
@@ -33,9 +33,13 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return loggedInUser != "NotLoggedIn"
         ? Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+            padding: const EdgeInsets.all(11),
             child:
-                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                'Profile',
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
+              ),
               FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                 future: getUserInformation(loggedInUser),
                 builder: (c, snapshot) => snapshot.hasData

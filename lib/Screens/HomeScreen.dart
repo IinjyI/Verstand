@@ -35,31 +35,46 @@ class _HomeState extends State<Home> {
         ? SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(11),
-                child: Column(children: [
-                  Text(
-                    loggedInUser!,
-                  ),
-                  FutureBuilder<
-                      List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
-                    future: getHistory(loggedInUser),
-                    builder: (context, snapshot) => snapshot.hasData
-                        ? ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: snapshot.data!.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return CustomHistoryItem(
-                                index: index,
-                                pastDiagnosis:
-                                    snapshot.data![index].data()['diagnosis'],
-                                time: snapshot.data![index].data()['timestamp'],
-                              );
-                            })
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                  ),
-                ])),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hello, $loggedInUser!',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 35),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        'History:',
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black45),
+                      ),
+                      FutureBuilder<
+                          List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
+                        future: getHistory(loggedInUser),
+                        builder: (context, snapshot) => snapshot.hasData
+                            ? ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: snapshot.data!.length,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return CustomHistoryItem(
+                                    index: index,
+                                    pastDiagnosis: snapshot.data![index]
+                                        .data()['diagnosis'],
+                                    time: snapshot.data![index]
+                                        .data()['timestamp'],
+                                  );
+                                })
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                      ),
+                    ])),
           )
         : CustomNotLoggedIn();
   }

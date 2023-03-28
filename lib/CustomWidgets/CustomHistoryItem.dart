@@ -21,7 +21,7 @@ class CustomHistoryItem extends StatelessWidget {
             '${index + 1}',
             style: TextStyle(
               fontSize: 25,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
           Padding(
@@ -33,7 +33,7 @@ class CustomHistoryItem extends StatelessWidget {
                   pastDiagnosis,
                   style: TextStyle(
                     fontSize: 25,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 Text(
@@ -43,7 +43,7 @@ class CustomHistoryItem extends StatelessWidget {
                       .substring(0, 19),
                   style: TextStyle(
                       fontSize: 17,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w400,
                       color: Colors.indigo),
                 ),
               ],

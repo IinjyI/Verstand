@@ -21,9 +21,6 @@ class _AIDiagnosisScreenState extends State<AIDiagnosisScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text("AI based diagnosis"),
-          backgroundColor: Colors.blueAccent),
       body: SafeArea(child: AIDiagnosis()),
     );
   }
@@ -44,7 +41,12 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
       padding: EdgeInsets.only(top: 20, left: 20, right: 20),
       alignment: Alignment.topCenter,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            'AI-based diagnosis',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
+          ),
           CustomButton(
             text: "Choose from gallery",
             function: () async {

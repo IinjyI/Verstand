@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:verstand/Functions/DBandAuth/database.dart';
 
 import '../CustomWidgets/CustomHistoryItem.dart';
+import '../CustomWidgets/CustomNotLoggedIn.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
 import 'WelcomeScreen.dart';
 
@@ -30,59 +31,36 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(11),
-        child: Column(children: [
-          Text(
-            loggedInUser!,
-          ),
-          loggedInUser != "NotLoggedIn"
-              ? FutureBuilder<
-                  List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
-                  future: getHistory(loggedInUser),
-                  builder: (context, snapshot) => snapshot.hasData
-                      ? ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: snapshot.data!.length,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return CustomHistoryItem(
-                              index: index,
-                              pastDiagnosis:
-                                  snapshot.data![index].data()['diagnosis'],
-                              time: snapshot.data![index].data()['timestamp'],
-                            );
-                          })
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                )
-              : Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "You are not logged in",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.w600),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed(WelcomeScreen.id);
-                        },
-                        child: const Text(
-                          "Go to sign in / up",
-                          style:
-                              TextStyle(color: Colors.blueGrey, fontSize: 20),
-                        ),
-                      ),
-                    ],
+    return loggedInUser != "NotLoggedIn"
+        ? SingleChildScrollView(
+            child: Padding(
+                padding: const EdgeInsets.all(11),
+                child: Column(children: [
+                  Text(
+                    loggedInUser!,
                   ),
-                ),
-        ]),
-      ),
-    );
+                  FutureBuilder<
+                      List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
+                    future: getHistory(loggedInUser),
+                    builder: (context, snapshot) => snapshot.hasData
+                        ? ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: snapshot.data!.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return CustomHistoryItem(
+                                index: index,
+                                pastDiagnosis:
+                                    snapshot.data![index].data()['diagnosis'],
+                                time: snapshot.data![index].data()['timestamp'],
+                              );
+                            })
+                        : Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                  ),
+                ])),
+          )
+        : CustomNotLoggedIn();
   }
 }

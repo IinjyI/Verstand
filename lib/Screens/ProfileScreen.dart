@@ -4,6 +4,7 @@ import 'package:verstand/Functions/DBandAuth/sharedPrefs.dart';
 
 import '../CustomWidgets/CustomButton.dart';
 import '../CustomWidgets/CustomInfoItem.dart';
+import '../CustomWidgets/CustomNotLoggedIn.dart';
 import '../Functions/DBandAuth/database.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
 import 'WelcomeScreen.dart';
@@ -30,10 +31,11 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
-      child: loggedInUser != "NotLoggedIn"
-          ? Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+    return loggedInUser != "NotLoggedIn"
+        ? Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
               FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
                 future: getUserInformation(loggedInUser),
                 builder: (c, snapshot) => snapshot.hasData
@@ -58,28 +60,8 @@ class Profile extends StatelessWidget {
                       )
                     : Center(child: CircularProgressIndicator()),
               )
-            ])
-          : Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "You are not logged in",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(WelcomeScreen.id);
-                    },
-                    child: const Text(
-                      "Go to sign in / up",
-                      style: TextStyle(color: Colors.blueGrey, fontSize: 20),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-    );
+            ]),
+          )
+        : CustomNotLoggedIn();
   }
 }

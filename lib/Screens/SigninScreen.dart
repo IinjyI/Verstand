@@ -96,7 +96,7 @@ class Signin extends StatelessWidget {
                                   if (value != null) {
                                     await setLoggedInUser(
                                         await getUsername(_email.text));
-                                    getLoggedInUser();
+                                    await getLoggedInUser();
 
                                     Navigator.pushReplacementNamed(
                                         context, NavBottomBar.id);

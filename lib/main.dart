@@ -11,9 +11,13 @@ import 'Screens/AIDiagnosisScreen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  /// connection with firebase
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// connection with firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  ///check if user is logged in
+  await getLoggedInUser();
 
   ///run
   runApp(MyApp());

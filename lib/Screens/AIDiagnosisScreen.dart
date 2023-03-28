@@ -91,12 +91,14 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
             },
           ),
           SizedBox(height: 10),
-          image == null ? Container() : Image.file(File(image!.path)),
+          Center(
+              child:
+                  image == null ? Container() : Image.file(File(image!.path))),
           SizedBox(height: 10),
           processing
-              ? CircularProgressIndicator()
+              ? Center(child: CircularProgressIndicator())
               : Text(
-                  diagnosis,
+                  'diagnosis: $diagnosis',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.black,

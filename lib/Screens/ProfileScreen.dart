@@ -59,6 +59,11 @@ class Profile extends StatelessWidget {
                                 signOut();
                                 Navigator.pushReplacementNamed(
                                     context, WelcomeScreen.id);
+                              }),
+                          CustomButton(
+                              text: 'Delete past history',
+                              function: () {
+                                deleteHistory(loggedInUser!);
                               })
                         ],
                       )

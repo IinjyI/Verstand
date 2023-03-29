@@ -79,4 +79,5 @@ void deleteHistory(String username) {
       doc.reference.delete();
     }
   });
+  count = 0;
 }

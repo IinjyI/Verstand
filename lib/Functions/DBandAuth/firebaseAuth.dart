@@ -15,8 +15,7 @@ checkUsersName(userName) async {
 }
 
 checkEmail(email) async {
-  await searchEmail(email).then(
-      (List<QueryDocumentSnapshot> value) => resultOfEmail = value.length);
+  await searchEmail(email).then((value) => resultOfEmail = value);
 }
 
 Future signUp(String email, String password) async {

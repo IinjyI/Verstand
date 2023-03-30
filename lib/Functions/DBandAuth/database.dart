@@ -35,13 +35,12 @@ Future searchUserName(String userName) {
 }
 
 /// search by email
-Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> searchEmail(
-    String email) {
+Future searchEmail(String email) {
   return _fireStore
       .collection('users')
       .where('email', isEqualTo: email)
       .get()
-      .then((value) => value.docs);
+      .then((value) => value.docs.length);
 }
 
 /// store history in firebase

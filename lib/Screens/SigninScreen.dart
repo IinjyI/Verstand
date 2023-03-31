@@ -8,6 +8,7 @@ import '../CustomWidgets/CustomTextField.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
 import '../Providers/SignProvider.dart';
+import 'SignupScreen.dart';
 
 class SigninScreen extends StatelessWidget {
   static const String id = 'SigninScreen';
@@ -107,7 +108,18 @@ class Signin extends StatelessWidget {
                                 });
                               }
                             });
-                      })
+                      }),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                              context, SignupScreen.id);
+                        },
+                        child: const Text(
+                          "Sign up instead",
+                          style:
+                              TextStyle(color: Colors.blueGrey, fontSize: 20),
+                        ),
+                      ),
                     ],
                   ),
                 ),

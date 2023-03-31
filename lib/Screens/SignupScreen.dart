@@ -10,6 +10,7 @@ import '../Functions/DBandAuth/database.dart';
 import '../Functions/DBandAuth/firebaseAuth.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
 import '../Providers/SignProvider.dart';
+import 'SigninScreen.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({Key? key}) : super(key: key);
@@ -137,7 +138,18 @@ class Signup extends StatelessWidget {
                                     .signed();
                               }
                             });
-                      })
+                      }),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(
+                              context, SigninScreen.id);
+                        },
+                        child: const Text(
+                          "Sign in instead",
+                          style:
+                              TextStyle(color: Colors.blueGrey, fontSize: 20),
+                        ),
+                      ),
                     ],
                   ),
                 ),

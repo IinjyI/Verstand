@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore _fireStore = FirebaseFirestore.instance;
-int count = 0;
 
-/// store data
+/// store user
 void upLoadProfile(Map<String, dynamic> userInfo, String username) {
   _fireStore.collection('users').doc(username).set(userInfo);
 }
@@ -66,6 +65,16 @@ Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getHistory(
       .then((value) => value.docs);
 }
 
+/// get history length
+Future<int> getHistoryLength(String? username) {
+  return _fireStore
+      .collection('users')
+      .doc(username)
+      .collection('history')
+      .get()
+      .then((value) => value.docs.length);
+}
+
 /// delete history
 void deleteHistory(String username) {
   _fireStore
@@ -78,5 +87,4 @@ void deleteHistory(String username) {
       doc.reference.delete();
     }
   });
-  count = 0;
 }

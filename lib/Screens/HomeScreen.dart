@@ -66,8 +66,10 @@ class _HomeState extends State<Home> {
                                     index: index,
                                     pastDiagnosis: snapshot.data![index]
                                         .data()['diagnosis'],
-                                    time: snapshot.data![index]
+                                    pastTime: snapshot.data![index]
                                         .data()['timestamp'],
+                                    pastImgPath:
+                                        snapshot.data![index].data()['imgPath'],
                                   );
                                 })
                             : Center(

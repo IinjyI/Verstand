@@ -59,9 +59,10 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
                 Map<String, dynamic> diagnosisInfo = {
                   'diagnosis': diagnosis,
                   'timestamp': Timestamp.fromDate(DateTime.now()),
+                  'imgPath': image!.path
                 };
-
-                await storeHistory(loggedInUser!, diagnosisInfo, '${count++}');
+                int len = await getHistoryLength(loggedInUser!);
+                await storeHistory(loggedInUser!, diagnosisInfo, '${len + 1}');
               }
               setState(() {
                 processing = false;
@@ -81,9 +82,10 @@ class _AIDiagnosisState extends State<AIDiagnosis> {
                 Map<String, dynamic> diagnosisInfo = {
                   'diagnosis': diagnosis,
                   'timestamp': Timestamp.fromDate(DateTime.now()),
+                  'imgPath': image!.path
                 };
-
-                await storeHistory(loggedInUser!, diagnosisInfo, '${count++}');
+                int len = await getHistoryLength(loggedInUser!);
+                await storeHistory(loggedInUser!, diagnosisInfo, '${len + 1}');
               }
               setState(() {
                 processing = false;

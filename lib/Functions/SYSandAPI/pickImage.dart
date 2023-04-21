@@ -5,12 +5,10 @@ ImagePicker picker = ImagePicker();
 XFile? image;
 String? diagnosis;
 
-Future<void> sendImageFromGallery() async {
+Future<void> getImageFromGallery() async {
   image = await picker.pickImage(source: ImageSource.gallery);
-  diagnosis = await diagnose(image);
 }
 
-Future<void> sendImageFromCamera() async {
+Future<void> getImageFromCamera() async {
   image = await picker.pickImage(source: ImageSource.camera);
-  diagnosis = await diagnose(image);
 }

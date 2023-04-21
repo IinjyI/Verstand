@@ -3,7 +3,7 @@ import 'package:image_picker/image_picker.dart';
 
 ImagePicker picker = ImagePicker();
 XFile? image;
-String diagnosis = " ";
+String? diagnosis;
 
 Future<void> sendImageFromGallery() async {
   image = await picker.pickImage(source: ImageSource.gallery);

@@ -41,10 +41,12 @@ class AIDiagnosis extends StatelessWidget {
                 return CustomButton(
                   text: "Choose from gallery",
                   function: () async {
-                    await sendImageFromGallery();
                     Provider.of<DiagnosisProvider>(context, listen: false)
                         .processing();
+                    await sendImageFromGallery();
 
+                    Provider.of<DiagnosisProvider>(context, listen: false)
+                        .done();
                     if (loggedInUser != "NotLoggedIn") {
                       Map<String, dynamic> diagnosisInfo = {
                         'diagnosis': diagnosis,
@@ -55,8 +57,6 @@ class AIDiagnosis extends StatelessWidget {
                       await storeHistory(
                           loggedInUser!, diagnosisInfo, '${len + 1}');
                     }
-                    Provider.of<DiagnosisProvider>(context, listen: false)
-                        .done();
                   },
                 );
               }),
@@ -65,10 +65,12 @@ class AIDiagnosis extends StatelessWidget {
                 return CustomButton(
                   text: "Choose from camera",
                   function: () async {
-                    await sendImageFromCamera();
                     Provider.of<DiagnosisProvider>(context, listen: false)
                         .processing();
+                    await sendImageFromCamera();
 
+                    Provider.of<DiagnosisProvider>(context, listen: false)
+                        .done();
                     if (loggedInUser != "NotLoggedIn") {
                       Map<String, dynamic> diagnosisInfo = {
                         'diagnosis': diagnosis,
@@ -79,8 +81,6 @@ class AIDiagnosis extends StatelessWidget {
                       await storeHistory(
                           loggedInUser!, diagnosisInfo, '${len + 1}');
                     }
-                    Provider.of<DiagnosisProvider>(context, listen: false)
-                        .done();
                   },
                 );
               }),

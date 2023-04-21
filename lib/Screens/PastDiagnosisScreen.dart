@@ -19,28 +19,42 @@ class PastDiagnosisScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.file(File(pastImgPath)),
-              SizedBox(height: 10),
-              Text(
-                pastDiagnosis,
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w400,
+          child: Padding(
+            padding: const EdgeInsets.all(11),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Info:',
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 35),
                 ),
-              ),
-              Text(
-                DateTime.fromMicrosecondsSinceEpoch(
-                        pastTime.microsecondsSinceEpoch)
-                    .toString()
-                    .substring(0, 19),
-                style: TextStyle(
-                    fontSize: 17,
+                SizedBox(
+                  height: 15,
+                ),
+                Image.file(
+                  File(pastImgPath),
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(height: 10),
+                Text(
+                  pastDiagnosis,
+                  style: TextStyle(
+                    fontSize: 25,
                     fontWeight: FontWeight.w400,
-                    color: Colors.indigo),
-              ),
-            ],
+                  ),
+                ),
+                Text(
+                  DateTime.fromMicrosecondsSinceEpoch(
+                          pastTime.microsecondsSinceEpoch)
+                      .toString()
+                      .substring(0, 19),
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.indigo),
+                ),
+              ],
+            ),
           ),
         ),
       ),

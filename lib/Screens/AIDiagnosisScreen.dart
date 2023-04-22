@@ -1,13 +1,10 @@
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:verstand/CustomWidgets/CustomButton.dart';
 
-import '../Functions/DBandAuth/database.dart';
-import '../Functions/DBandAuth/sharedPrefs.dart';
-import '../Functions/SYSandAPI/processAndStore.dart';
+import '../Functions/DBandAuth/mapAndStore.dart';
 import '../Functions/SYSandAPI/getDiagnosis.dart';
 import '../Functions/SYSandAPI/pickImage.dart';
 import '../Providers/diagnosisProvider.dart';
@@ -51,18 +48,11 @@ class AIDiagnosis extends StatelessWidget {
                         Provider.of<DiagnosisProvider>(context, listen: false)
                             .processing();
                         diagnosis = await getDiagnosis(image!.path);
-                        if (loggedInUser != "NotLoggedIn") {
-                          Map<String, dynamic> diagnosisInfo = {
-                            'diagnosis': diagnosis,
-                            'timestamp': Timestamp.fromDate(DateTime.now()),
-                            'imgPath': image!.path
-                          };
-                          int len = await getHistoryLength(loggedInUser!);
-                          await storeHistoryItem(
-                              loggedInUser!, diagnosisInfo, '${len + 1}');
-                          Provider.of<DiagnosisProvider>(context, listen: false)
-                              .done();
-                        }
+
+                        await mapAndStore(diagnosis, image!.path);
+
+                        Provider.of<DiagnosisProvider>(context, listen: false)
+                            .done();
                       }
                     },
                   );
@@ -73,7 +63,16 @@ class AIDiagnosis extends StatelessWidget {
                     text: "Choose from camera",
                     function: () async {
                       image = await getImageFromCamera();
-                      diagnosis = await getDiagnosis(image!.path);
+                      if (image != null) {
+                        Provider.of<DiagnosisProvider>(context, listen: false)
+                            .processing();
+                        diagnosis = await getDiagnosis(image!.path);
+
+                        await mapAndStore(diagnosis, image!.path);
+
+                        Provider.of<DiagnosisProvider>(context, listen: false)
+                            .done();
+                      }
                     },
                   );
                 }),

@@ -39,6 +39,30 @@ class AIDiagnosis extends StatelessWidget {
                   'AI-based diagnosis',
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
                 ),
+                Center(
+                  child: Provider.of<DiagnosisProvider>(
+                    context,
+                  ).isProcessing
+                      ? Text('Just a sec...')
+                      : image == null
+                          ? Container()
+                          : Image.file(
+                              File(image!.path),
+                            ),
+                ),
+                SizedBox(height: 10),
+                Provider.of<DiagnosisProvider>(context).isProcessing
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Text(
+                        diagnosis != null ? ' diagnosis: $diagnosis' : ' ',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                 Consumer<DiagnosisProvider>(builder: (_, value, child) {
                   return CustomButton(
                     text: "Choose from gallery",
@@ -77,30 +101,6 @@ class AIDiagnosis extends StatelessWidget {
                   );
                 }),
                 SizedBox(height: 10),
-                Center(
-                  child: Provider.of<DiagnosisProvider>(
-                    context,
-                  ).isProcessing
-                      ? Text('Just a sec...')
-                      : image == null
-                          ? Container()
-                          : Image.file(
-                              File(image!.path),
-                            ),
-                ),
-                SizedBox(height: 10),
-                Provider.of<DiagnosisProvider>(context).isProcessing
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : Text(
-                        diagnosis != null ? ' diagnosis: $diagnosis' : ' ',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
               ],
             ),
           ),

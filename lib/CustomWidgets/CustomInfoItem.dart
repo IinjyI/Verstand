@@ -9,7 +9,6 @@ class CustomizedInfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 400,
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         child: ListTile(

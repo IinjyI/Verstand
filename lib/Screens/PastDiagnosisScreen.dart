@@ -10,7 +10,6 @@ class PastDiagnosisScreen extends StatelessWidget {
       required this.pastImgPath,
       required this.pastTime})
       : super(key: key);
-  static const String id = 'PastDiagnosisScreen';
   final String pastDiagnosis;
   final String pastImgPath;
   final Timestamp pastTime;

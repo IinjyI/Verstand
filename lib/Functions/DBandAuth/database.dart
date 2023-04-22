@@ -42,14 +42,14 @@ Future searchEmail(String email) {
       .then((value) => value.docs.length);
 }
 
-/// store history in firebase
-Future storeHistory(
-    String username, Map<String, dynamic> info, String title) async {
+/// store history item in firebase
+Future storeHistoryItem(
+    String username, Map<String, dynamic> info, String indx) async {
   _fireStore
       .collection('users')
       .doc(username)
       .collection('history')
-      .doc(title)
+      .doc(indx)
       .set(info);
 }
 

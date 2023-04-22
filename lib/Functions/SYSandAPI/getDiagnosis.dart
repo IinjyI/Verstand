@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:http_parser/http_parser.dart';
 import 'package:http/http.dart' as http;
 
-Future<String> diagnose(image) async {
+String? diagnosis;
+Future<String> getDiagnosis(image) async {
   final request = http.MultipartRequest(
     'POST',
     Uri.parse('https://brain-tumor-api-rrh3.onrender.com/'),

@@ -1,12 +1,10 @@
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:verstand/CustomWidgets/CustomButton.dart';
 
-import '../Functions/DBandAuth/database.dart';
-import '../Functions/DBandAuth/sharedPrefs.dart';
-import '../Functions/SYSandAPI/diagnose.dart';
+import '../Functions/SYSandAPI/diagnoseAndStore.dart';
+import '../Functions/SYSandAPI/getDiagnosis.dart';
 import '../Functions/SYSandAPI/pickImage.dart';
 import '../Providers/diagnosisProvider.dart';
 
@@ -44,25 +42,7 @@ class AIDiagnosis extends StatelessWidget {
                     text: "Choose from gallery",
                     function: () async {
                       await getImageFromGallery();
-                      if (image != null) {
-                        Provider.of<DiagnosisProvider>(context, listen: false)
-                            .processing();
-
-                        diagnosis = await diagnose(image);
-
-                        Provider.of<DiagnosisProvider>(context, listen: false)
-                            .done();
-                        if (loggedInUser != "NotLoggedIn") {
-                          Map<String, dynamic> diagnosisInfo = {
-                            'diagnosis': diagnosis,
-                            'timestamp': Timestamp.fromDate(DateTime.now()),
-                            'imgPath': image!.path
-                          };
-                          int len = await getHistoryLength(loggedInUser!);
-                          await storeHistory(
-                              loggedInUser!, diagnosisInfo, '${len + 1}');
-                        }
-                      }
+                      diagnoseAndStore(context);
                     },
                   );
                 }),
@@ -72,24 +52,7 @@ class AIDiagnosis extends StatelessWidget {
                     text: "Choose from camera",
                     function: () async {
                       await getImageFromCamera();
-                      if (image != null) {
-                        Provider.of<DiagnosisProvider>(context, listen: false)
-                            .processing();
-                        diagnosis = await diagnose(image);
-
-                        Provider.of<DiagnosisProvider>(context, listen: false)
-                            .done();
-                        if (loggedInUser != "NotLoggedIn") {
-                          Map<String, dynamic> diagnosisInfo = {
-                            'diagnosis': diagnosis,
-                            'timestamp': Timestamp.fromDate(DateTime.now()),
-                            'imgPath': image!.path
-                          };
-                          int len = await getHistoryLength(loggedInUser!);
-                          await storeHistory(
-                              loggedInUser!, diagnosisInfo, '${len + 1}');
-                        }
-                      }
+                      diagnoseAndStore(context);
                     },
                   );
                 }),

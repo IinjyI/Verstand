@@ -5,7 +5,6 @@ import 'package:verstand/Functions/DBandAuth/database.dart';
 import '../CustomWidgets/CustomHistoryItem.dart';
 import '../CustomWidgets/CustomNotLoggedIn.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
-import 'WelcomeScreen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);

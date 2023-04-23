@@ -66,8 +66,8 @@ Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getHistory(
 }
 
 /// get history length
-Future<int> getHistoryLength(String? username) {
-  return _fireStore
+Future<int> getHistoryLength(String? username) async {
+  return await _fireStore
       .collection('users')
       .doc(username)
       .collection('history')

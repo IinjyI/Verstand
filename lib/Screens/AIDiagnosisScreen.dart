@@ -64,6 +64,7 @@ class AIDiagnosis extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
+                SizedBox(height: 10),
                 Consumer<DiagnosisProvider>(builder: (_, value, child) {
                   return CustomButton(
                     text: "Choose from gallery",

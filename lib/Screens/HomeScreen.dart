@@ -27,8 +27,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int? itemsCount;
+  int itemsCount = 0;
   bool reverse = false;
+  @override
+  void initState() {
+    super.initState();
+    getHistoryLength(loggedInUser).then((value) => setState(() {
+          itemsCount = value;
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return loggedInUser != "NotLoggedIn"
@@ -56,9 +64,7 @@ class _HomeState extends State<Home> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(itemsCount != null
-                              ? '$itemsCount items found'
-                              : ' '),
+                          Text('$itemsCount items found'),
                           TextButton(
                               onPressed: () {
                                 setState(() {
@@ -78,7 +84,6 @@ class _HomeState extends State<Home> {
                                 itemCount: snapshot.data!.length,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
-                                  itemsCount = snapshot.data!.length;
                                   return CustomHistoryItem(
                                     index: index,
                                     pastDiagnosis: snapshot.data![index]

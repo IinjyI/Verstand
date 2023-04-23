@@ -22,12 +22,13 @@ class HomeScreen extends StatelessWidget {
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
-
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  int? itemsCount;
+  bool reverse = false;
   @override
   Widget build(BuildContext context) {
     return loggedInUser != "NotLoggedIn"
@@ -46,21 +47,38 @@ class _HomeState extends State<Home> {
                         height: 15,
                       ),
                       Text(
-                        'History:',
+                        'Past diagnosis:',
                         style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w500,
                             color: Colors.black45),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(itemsCount != null
+                              ? '$itemsCount items found'
+                              : ' '),
+                          TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  reverse = !reverse;
+                                });
+                              },
+                              child: Text('sort'))
+                        ],
                       ),
                       FutureBuilder<
                           List<QueryDocumentSnapshot<Map<String, dynamic>>>>(
                         future: getHistory(loggedInUser),
                         builder: (context, snapshot) => snapshot.hasData
                             ? ListView.builder(
+                                reverse: reverse,
                                 physics: NeverScrollableScrollPhysics(),
                                 itemCount: snapshot.data!.length,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
+                                  itemsCount = snapshot.data!.length;
                                   return CustomHistoryItem(
                                     index: index,
                                     pastDiagnosis: snapshot.data![index]

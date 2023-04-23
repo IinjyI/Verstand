@@ -43,7 +43,8 @@ class AIDiagnosis extends StatelessWidget {
                   child: Provider.of<DiagnosisProvider>(
                     context,
                   ).isProcessing
-                      ? Text('Just a sec...')
+                      ? Text(
+                          "Loading... \nDon't leave this screen while processing as this will cancel the operation.")
                       : image == null
                           ? Container()
                           : Image.file(

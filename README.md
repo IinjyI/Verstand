@@ -4,8 +4,7 @@
 
 >## Problem description
 
-- #### Our brain is the most complex organ of our body and therefore, the most important. 
-- #### However, Brain tumors are hard for humans to diagnose using MRI images only, What if we use something more accurate... more capable of finding patterns?
+- #### Our brain is the most complex organ of our body and therefore, the most important. However, Brain tumors are hard for humans to diagnose using MRI images only, What if we use something more accurate... more capable of finding patterns?
 
 >## Goals
 

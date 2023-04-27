@@ -60,13 +60,6 @@ class Welcome extends StatelessWidget {
                 fontSize: 40,
                 fontWeight: FontWeight.bold),
           ),
-          const Text(
-            "Checkup on your brain",
-            style: TextStyle(
-                color: Color(0xFF17346a),
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
-          ),
           const SizedBox(
             height: 50,
           ),

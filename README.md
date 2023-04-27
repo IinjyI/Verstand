@@ -1,6 +1,6 @@
 # Verstand
-
-- A cross platform application built with flutter
+ A cross platform application built with flutter
+ 
 >## Tech stack
 ![Python](https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54) ![fast api](https://img.shields.io/badge/-fastapi-grey) ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=flat&logo=dart&logoColor=white) ![firebase](https://img.shields.io/badge/-firebase-orange) ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=flat&logo=Flutter&logoColor=white) ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=flat&logo=TensorFlow&logoColor=white)
 

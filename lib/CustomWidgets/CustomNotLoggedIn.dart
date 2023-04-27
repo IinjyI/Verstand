@@ -13,7 +13,7 @@ class CustomNotLoggedIn extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             "You are not logged in",
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
           ),

@@ -13,7 +13,7 @@ import 'SignupScreen.dart';
 class SigninScreen extends StatelessWidget {
   static const String id = 'SigninScreen';
 
-  SigninScreen({Key? key}) : super(key: key);
+  const SigninScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class Signin extends StatelessWidget {
   Signin({
     super.key,
   });
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Provider.of<SignProvider>(context).isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
@@ -45,7 +45,7 @@ class Signin extends StatelessWidget {
                       const Text(
                         'Welcome Back!',
                         style: TextStyle(
-                            color: const Color(0xff07304b),
+                            color: Color(0xff07304b),
                             fontSize: 50,
                             fontWeight: FontWeight.w700),
                       ),

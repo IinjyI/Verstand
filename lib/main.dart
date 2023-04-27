@@ -20,7 +20,7 @@ Future<void> main() async {
   await getLoggedInUser();
 
   ///run
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -31,13 +31,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        WelcomeScreen.id: (context) => WelcomeScreen(),
-        SignupScreen.id: (context) => SignupScreen(),
-        SigninScreen.id: (context) => SigninScreen(),
-        HomeScreen.id: (context) => HomeScreen(),
-        AIDiagnosisScreen.id: (context) => AIDiagnosisScreen(),
-        ProfileScreen.id: (context) => ProfileScreen(),
-        NavBottomBar.id: (context) => NavBottomBar()
+        WelcomeScreen.id: (context) => const WelcomeScreen(),
+        SignupScreen.id: (context) => const SignupScreen(),
+        SigninScreen.id: (context) => const SigninScreen(),
+        HomeScreen.id: (context) => const HomeScreen(),
+        AIDiagnosisScreen.id: (context) => const AIDiagnosisScreen(),
+        ProfileScreen.id: (context) => const ProfileScreen(),
+        NavBottomBar.id: (context) => const NavBottomBar()
       },
       initialRoute:
           loggedInUser == "NotLoggedIn" ? WelcomeScreen.id : NavBottomBar.id,

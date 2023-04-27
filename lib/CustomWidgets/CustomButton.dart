@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
         child: InkWell(
           onTap: function,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
             child: Center(
               child: Text(
                 text,

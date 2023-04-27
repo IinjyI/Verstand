@@ -10,7 +10,7 @@ import '../Functions/SYSandAPI/pickImage.dart';
 import '../Providers/diagnosisProvider.dart';
 
 class AIDiagnosisScreen extends StatelessWidget {
-  AIDiagnosisScreen({Key? key}) : super(key: key);
+  const AIDiagnosisScreen({Key? key}) : super(key: key);
   static const String id = 'AIDiagnosisScreen';
 
   @override
@@ -30,12 +30,12 @@ class AIDiagnosis extends StatelessWidget {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
-            padding: EdgeInsets.all(11),
+            padding: const EdgeInsets.all(11),
             alignment: Alignment.topCenter,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'AI-based diagnosis',
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
                 ),
@@ -43,7 +43,7 @@ class AIDiagnosis extends StatelessWidget {
                   child: Provider.of<DiagnosisProvider>(
                     context,
                   ).isProcessing
-                      ? Text(
+                      ? const Text(
                           "Loading... \nDon't leave this screen while processing as this will cancel the operation.")
                       : image == null
                           ? Container()
@@ -51,20 +51,20 @@ class AIDiagnosis extends StatelessWidget {
                               File(image!.path),
                             ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Provider.of<DiagnosisProvider>(context).isProcessing
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : Text(
                         diagnosis != null ? ' diagnosis: $diagnosis' : ' ',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Consumer<DiagnosisProvider>(builder: (_, value, child) {
                   return CustomButton(
                     text: "Choose from gallery",
@@ -83,7 +83,7 @@ class AIDiagnosis extends StatelessWidget {
                     },
                   );
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Consumer<DiagnosisProvider>(builder: (_, value, child) {
                   return CustomButton(
                     text: "Choose from camera",
@@ -102,7 +102,7 @@ class AIDiagnosis extends StatelessWidget {
                     },
                   );
                 }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
               ],
             ),
           ),

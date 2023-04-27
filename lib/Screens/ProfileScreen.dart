@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: Profile(),
       ),
@@ -36,7 +36,7 @@ class Profile extends StatelessWidget {
             padding: const EdgeInsets.all(11),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
+              const Text(
                 'Profile',
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
               ),
@@ -67,10 +67,10 @@ class Profile extends StatelessWidget {
                               })
                         ],
                       )
-                    : Center(child: CircularProgressIndicator()),
+                    : const Center(child: CircularProgressIndicator()),
               )
             ]),
           )
-        : CustomNotLoggedIn();
+        : const CustomNotLoggedIn();
   }
 }

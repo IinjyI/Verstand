@@ -7,12 +7,12 @@ import '../CustomWidgets/CustomNotLoggedIn.dart';
 import '../Functions/DBandAuth/sharedPrefs.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
   static const String id = 'HomeScreen';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: Home(),
       ),
@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
   @override
   State<Home> createState() => _HomeState();
 }
@@ -48,13 +48,13 @@ class _HomeState extends State<Home> {
                     children: [
                       Text(
                         'Hello, $loggedInUser!',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 35),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
-                      Text(
+                      const Text(
                         'Past diagnosis:',
                         style: TextStyle(
                             fontSize: 30,
@@ -71,7 +71,7 @@ class _HomeState extends State<Home> {
                                   reverse = !reverse;
                                 });
                               },
-                              child: Text('sort'))
+                              child: const Text('sort'))
                         ],
                       ),
                       FutureBuilder<
@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
                         builder: (context, snapshot) => snapshot.hasData
                             ? ListView.builder(
                                 reverse: reverse,
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 itemCount: snapshot.data!.length,
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
@@ -94,12 +94,12 @@ class _HomeState extends State<Home> {
                                         snapshot.data![index].data()['imgPath'],
                                   );
                                 })
-                            : Center(
+                            : const Center(
                                 child: CircularProgressIndicator(),
                               ),
                       ),
                     ])),
           )
-        : CustomNotLoggedIn();
+        : const CustomNotLoggedIn();
   }
 }

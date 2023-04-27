@@ -8,7 +8,8 @@ class CustomHistoryItem extends StatelessWidget {
   final Timestamp pastTime;
   final int index;
 
-  CustomHistoryItem({
+  const CustomHistoryItem({
+    super.key,
     required this.pastDiagnosis,
     required this.index,
     required this.pastImgPath,
@@ -33,7 +34,7 @@ class CustomHistoryItem extends StatelessWidget {
           children: [
             Text(
               '${index + 1}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w500,
               ),
@@ -45,7 +46,7 @@ class CustomHistoryItem extends StatelessWidget {
                 children: [
                   Text(
                     pastDiagnosis,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w400,
                     ),
@@ -55,7 +56,7 @@ class CustomHistoryItem extends StatelessWidget {
                             pastTime.microsecondsSinceEpoch)
                         .toString()
                         .substring(0, 19),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w400,
                         color: Colors.indigo),

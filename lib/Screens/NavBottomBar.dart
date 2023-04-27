@@ -21,13 +21,17 @@ class NavBottom extends StatelessWidget {
     super.key,
   });
 
-  final _screens = [HomeScreen(), AIDiagnosisScreen(), ProfileScreen()];
+  final _screens = [
+    const HomeScreen(),
+    const AIDiagnosisScreen(),
+    const ProfileScreen()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: _screens[Provider.of<NavBottomProvider>(context).selectedIndex],
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 80,
         child: Consumer<NavBottomProvider>(builder: (_, value, child) {
           return BottomNavigationBar(
@@ -35,13 +39,13 @@ class NavBottom extends StatelessWidget {
             selectedItemColor: Colors.blue,
             unselectedItemColor: Colors.black26,
             selectedLabelStyle:
-                TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             currentIndex: Provider.of<NavBottomProvider>(context).selectedIndex,
             onTap: (index) {
               Provider.of<NavBottomProvider>(context, listen: false)
                   .updateIndex(index);
             },
-            items: [
+            items: const [
               BottomNavigationBarItem(
                   icon: Icon(Icons.home_filled), label: 'Home'),
               BottomNavigationBarItem(

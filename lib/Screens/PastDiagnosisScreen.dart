@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class PastDiagnosisScreen extends StatelessWidget {
-  PastDiagnosisScreen(
+  const PastDiagnosisScreen(
       {Key? key,
       required this.pastDiagnosis,
       required this.pastImgPath,
@@ -23,21 +23,21 @@ class PastDiagnosisScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
+                const Text(
                   'Info:',
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 35),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Image.file(
                   File(pastImgPath),
                   fit: BoxFit.cover,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   pastDiagnosis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w400,
                   ),
@@ -47,7 +47,7 @@ class PastDiagnosisScreen extends StatelessWidget {
                           pastTime.microsecondsSinceEpoch)
                       .toString()
                       .substring(0, 19),
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w400,
                       color: Colors.indigo),

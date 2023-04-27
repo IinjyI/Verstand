@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
   CustomTextField({
+    super.key,
     required this.icon,
     required this.labelText,
     required this.validator,
@@ -50,7 +51,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               color: const Color(0xff2952ce),
             ),
           ),
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
         ),
       ),
     );

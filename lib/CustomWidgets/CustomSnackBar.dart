@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 void buildSnackBar(context, String message) {
   final snackBar = SnackBar(
-    content: Text('$message'),
+    content: Text(message),
     action: SnackBarAction(
-      label: 'Undo',
+      label: 'ok',
       onPressed: () {},
     ),
   );

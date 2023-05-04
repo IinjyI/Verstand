@@ -34,3 +34,4 @@
 >## Side-notes
 - #### The code for DL model and API are uploaded to github (private repos)
 - #### Due to hosting issues (I'm still working on them), if no images are sent to the API for more than 15 minutes, it becomes idle and may take up to 2-3 minutes to come back online and respond
+- #### MRI images has to be in .JPG format to be diagnosed correctly (I'm still working on this issue)
